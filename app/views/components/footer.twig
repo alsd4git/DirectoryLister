@@ -1,7 +1,12 @@
+{#TODO: it would be much better if there was a way to automate the update process to this variable#}
+
+{% set app_version = 'v3.6.1' %}
 <footer class="container border-t-2 border-gray-800 text-center mx-auto px-4 py-8">
     <div class="flex flex-col justify-center items-center">
         <p class="mb-4">
-            {{ translate('powered_by') }} <a href="https://www.directorylister.com" class="underline hover:text-blue-700">Directory Lister</a>
+            {{ translate('powered_by') }}
+            <a href="https://www.directorylister.com" class="underline hover:text-blue-700">Directory Lister</a>
+            <a href="https://github.com/DirectoryLister/DirectoryLister/releases" class="underline hover:text-blue-700">{{ app_version }} </a>
         </p>
 
         <div class="flex">

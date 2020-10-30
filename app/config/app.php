@@ -41,7 +41,7 @@ return [
      *
      * Default value: false
      */
-    'dark_mode' => DI\env('DARK_MODE', false),
+    'dark_mode' => DI\env('DARK_MODE', true),
 
     /**
      * Parse and render README files on the page.
