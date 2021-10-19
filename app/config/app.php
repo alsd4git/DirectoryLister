@@ -22,12 +22,12 @@ return [
     'language' => DI\env('APP_LANGUAGE', 'en'),
 
     /**
-     * Text of the 'home' link in the navigation breadcrumbs. If undefined or
-     * null will use the translated form of "home" from your selected language.
+     * The title of your directory listing. This will be displayed in the
+     * browser tab/title bar along with the current path.
      *
-     * Default value: null
+     * Default value: 'Directory Lister'
      */
-    'home_text' => DI\env('HOME_TEXT', null),
+    'site_title' => DI\env('SITE_TITLE', 'Directory Lister'),
 
     /**
      * Meta tag description text.
@@ -37,10 +37,14 @@ return [
     'meta_description' => DI\env('META_DESCRIPTION', 'Yet another directory listing, powered by Directory Lister.'),
 
     /**
-     * Enable dark mode?
+     * Text of the 'home' link in the navigation breadcrumbs. If undefined or
+     * null will use the translated form of "home" from your selected language.
      *
-     * Default value: false
+     * Default value: null
      */
+    'home_text' => DI\env('HOME_TEXT', null),
+
+
     'dark_mode' => DI\env('DARK_MODE', true),
 
     /**
@@ -121,11 +125,18 @@ return [
     ],
 
     /**
-     * Whether or not to hide application files/directories form the listing.
+     * Whether or not to hide application files/directories from the listing.
      *
      * Default value: true
      */
     'hide_app_files' => DI\env('HIDE_APP_FILES', true),
+
+    /**
+     * Whether or not to hide dot files/directories from the listing.
+     *
+     * Default value: true
+     */
+    'hide_dot_files' => DI\env('HIDE_DOT_FILES', true),
 
     /**
      * Hide the files Version Control System (i.e. Git and Mercurial) use to

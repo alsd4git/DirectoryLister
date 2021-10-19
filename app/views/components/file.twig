@@ -1,6 +1,6 @@
 <a
     href="{{ parentDir ? parent_url(path) : file_url(file.getPathname) }}"
-    class="flex flex-col items-center rounded-lg font-mono group hover:bg-gray-200 hover:shadow"
+    class="flex flex-col items-center rounded-lg font-mono group hover:bg-gray-100 hover:shadow dark:hover:bg-purple-700"
 >
     <div class="flex justify-between items-center p-4 w-full">
         <div class="pr-2">
@@ -17,17 +17,15 @@
 
         {% if file.isFile %}
             <div class="ml-2">
-                <button
-                    title="{{ translate('file.info') }}"
-                    class="flex justify-center items-center rounded-full p-2 -m-1 md:invisible hover:bg-gray-400 hover:shadow group-hover:visible"
-                    v-on:click.prevent="showFileInfo('{{ url(file.getPathname) | escape('js') }}')"
+                <button title="{{ translate('file.info') }}" @click.prevent="$dispatch('show-file-info', { file: '{{ url(file.getPathname) | escape('js') }}' })"
+                    class="justify-center items-center rounded-full w-8 h-8 -m-1 md:invisible hover:bg-gray-300 hover:shadow dark:hover:bg-purple-900 group-hover:visible"
                 >
                     <i class="fas fa-info-circle"></i>
                 </button>
             </div>
         {% endif %}
 
-        <div class="hidden whitespace-no-wrap text-right mx-2 w-1/6 sm:block">
+        <div class="hidden whitespace-nowrap text-right mx-2 w-1/6 sm:block">
             {% if parentDir or file.isDir %}
                     —
             {% else %}
@@ -35,8 +33,8 @@
             {% endif %}
         </div>
 
-        <div class="hidden whitespace-no-wrap text-right truncate ml-2 w-1/4 sm:block">
-            {{ parentDir ? '—' : file.getMTime | date }}
+        <div class="hidden whitespace-nowrap text-right truncate ml-2 w-1/4 sm:block">
+            {{ parentDir ? '—' : modified_time(file) }}
         </div>
     </div>
 </a>

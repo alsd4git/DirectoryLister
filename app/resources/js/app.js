@@ -1,36 +1,15 @@
-import Vue from 'vue';
-import FileInfoModal from './components/file-info-modal.vue';
+import Alpine from 'alpinejs';
+import hljs from 'highlight.js';
 
-const app = new Vue({
-    el: '#app',
-    components: { FileInfoModal },
-    data: function () {
-        return { menuOpen: false };
-    },
-    computed: {
-        menuStyles() { return { 'hidden': ! this.menuOpen } }
-    },
-    methods: {
-        showFileInfo(filePath) {
-            this.$refs.fileInfoModal.show(filePath);
-        },
-        toggleMenuVisibility() {
-            this.menuOpen = ! this.menuOpen;
-        }
-    },
-    mounted: function() {
-        window.addEventListener('keyup', e => e.keyCode == 191 && this.$refs.searchInput.focus());
+// Alpine.js components
+import Application from './components/Application.js';
+import FileInfoModal from './components/FileInfoModal.js';
 
-        let scrollToTop = this.$refs.scrollToTop;
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 10) {
-                scrollToTop.classList.remove('hidden');
-            } else {
-                scrollToTop.classList.add('hidden');
-            }
-        });
-    }
-});
+Alpine.data('application', Application);
+Alpine.data('fileInfoModal', FileInfoModal);
 
-let hljs = require('highlight.js');
-hljs.initHighlightingOnLoad();
+// Run Alpine.js
+Alpine.start();
+
+// Highlight.js
+hljs.highlightAll();

@@ -1,59 +1,40 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
+
 module.exports = {
-    future: {
-        purgeLayersByDefault: true,
-        removeDeprecatedGapUtilities: true
-    },
-    plugins: [],
+    darkMode: 'class',
+    mode: 'jit',
     purge: {
         mode: 'all',
         content: [
-            'app/**/*.js',
-            'app/**/*.php',
-            'app/**/*.scss',
-            'app/**/*.twig',
-            'app/**/*.vue',
+            'app/resources/**/*.{js,scss}',
+            'app/src/**/*.php',
+            'app/views/**/*.twig',
         ],
         options: {
-            whitelist: ['html', 'body', 'main', 'fab', 'fas'],
-            whitelistPatterns: [/^fa\-/, /^hljs/]
+            safelist: ['html', 'body', 'main', 'fab', 'fas', /^hljs/],
         }
     },
     theme: {
         extend: {
+            colors: {
+                blue: colors.sky,
+                gray: colors.blueGray,
+                purple: colors.violet,
+            },
             fontFamily: {
-                mono: [
-                    'Source Code Pro',
-                    'Menlo',
-                    'Monaco',
-                    'Consolas',
-                    '"Liberation Mono"',
-                    '"Courier New"',
-                    'monospace',
-                ],
-                sans: [
-                    'Work Sans',
-                    '-apple-system',
-                    'BlinkMacSystemFont',
-                    '"Segoe UI"',
-                    'Roboto',
-                    '"Helvetica Neue"',
-                    'Arial',
-                    '"Noto Sans"',
-                    'sans-serif',
-                    '"Apple Color Emoji"',
-                    '"Segoe UI Emoji"',
-                    '"Segoe UI Symbol"',
-                    '"Noto Color Emoji"',
-                ]
+                merriweather: ['Merriweather', ...defaultTheme.fontFamily.serif],
+                mono: ['Source Code Pro', ...defaultTheme.fontFamily.mono],
+                sans: ['Work Sans', ...defaultTheme.fontFamily.sans],
             },
             textColor: {
                 github: '#171515',
-                spectrum: '#7B16FF',
                 twitter: '#1DA1F2'
             }
         }
     },
     variants: {
+        backgroundOpacity: ['dark'],
         visibility: ['responsive', 'hover', 'group-hover']
     }
 };

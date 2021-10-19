@@ -3,13 +3,13 @@
 </p>
 
 <p align="center">
-    <a href="https://spectrum.chat/directory-lister"><img src="https://img.shields.io/badge/Join_the-Community-7b16ff.svg?style=for-the-badge" alt="Join our Community"></a>
+    <a href="https://github.com/DirectoryLister/DirectoryLister/discussions"><img src="https://img.shields.io/badge/Join_the-Community-7b16ff.svg?style=for-the-badge" alt="Join our Community"></a>
     <a href="https://github.com/users/PHLAK/sponsorship"><img src="https://img.shields.io/badge/Become_a-Sponsor-cc4195.svg?style=for-the-badge" alt="Become a Sponsor"></a>
     <a href="https://paypal.me/ChrisKankiewicz"><img src="https://img.shields.io/badge/Make_a-Donation-006bb6.svg?style=for-the-badge" alt="One-time Donation"></a>
     <br>
+    <img alt="Packagist PHP Version Support" src="https://img.shields.io/packagist/php-v/phlak/directory-lister?style=flat-square">
     <a href="https://github.com/DirectoryLister/DirectoryLister/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DirectoryLister/DirectoryLister?style=flat-square" alt="License"></a>
-    <a href="https://travis-ci.com/DirectoryLister/DirectoryLister"><img src="https://img.shields.io/travis/com/DirectoryLister/DirectoryLister/master?style=flat-square" alt="Build Status"></a>
-    <a href="https://styleci.io/repos/1375774"><img src="https://styleci.io/repos/1375774/shield?branch=master" alt="StyleCI"></a>
+    <a href="https://github.com/DirectoryLister/DirectoryLister/actions" alt="Build Status"><img src="https://img.shields.io/github/checks-status/DirectoryLister/DirectoryLister/master?style=flat-square"></a>
 </p>
 
 ---
@@ -55,7 +55,12 @@ Configuration
   1. Copy `.env.example` to `.env`
   2. Edit the configuration values in `.env`
 
-See the [Config Reference](https://github.com/DirectoryLister/DirectoryLister/wiki/Config-Reference) for more information about individual options.
+See the [Configuration Documentation](https://docs.directorylister.com/configuration) for more information.
+
+Sponsors
+--------
+
+<a href="https://besturate.com"><img src="https://i.imgur.com/fUKxT63.png" alt="Besturate" height="100" style="height: 100px;"></a>
 
 Changelog
 ---------
@@ -65,9 +70,9 @@ A list of changes can be found on the [GitHub Releases](https://github.com/Direc
 Troubleshooting
 ---------------
 
-See the [Common Issues](https://github.com/DirectoryLister/DirectoryLister/wiki/Common-Issues) page for a list of common issues and help in solving them.
+See the [Help & Support](https://docs.directorylister.com/help-and-support) section of the documentation for troubleshooting instructions.
 
-For general help and support join our [Spectrum Community](https://spectrum.chat/directory-lister) or reach out on [Twitter](https://twitter.com/DirectoryLister).
+For general help and support join our [GitHub Discussion](https://github.com/DirectoryLister/DirectoryLister/discussions) or reach out on [Twitter](https://twitter.com/DirectoryLister).
 
 Please report bugs to the [GitHub Issue Tracker](https://github.com/DirectoryLister/DirectoryLister/issues).
 

@@ -17,9 +17,18 @@ return [
     /**
      * The app cache lifetime (in seconds). If set to 0, cache indefinitely.
      *
-     * Default value: 0 (indefinitely)
+     * Default value: 3600 (one hour)
      */
-    'cache_lifetime' => DI\env('CACHE_LIFETIME', 0),
+    'cache_lifetime' => DI\env('CACHE_LIFETIME', 3600),
+
+    /**
+     * Some cache drivers require manually pruning the cache periodically to
+     * remove expired items. This is the percentage chance (out of 100) of a
+     * request "winning" the lottery causing the cache to be pruned.
+     *
+     * Default value: 2
+     */
+    'cache_lottery' => DI\env('CACHE_LOTTERY', 2),
 
     /**
      * Path to the view cache directory. Set to 'false' to disable
@@ -98,18 +107,19 @@ return [
     }),
 
     /**
-     * HTTP expires values to control browser cache durations.
+     * HTTP cache values for controlling browser page cache durations.
      *
-     * Possible values: An array of mime types mapped to their cache duration
-     * as a relative datetime string.
+     * Possible values: An array of content types mapped to their cache duration
+     * in seconds
      *
      * Default value: [
-     *     'application/zip' => '+1 hour',
-     *     'text/json' => '+1 hour',
+     *     'application/json' => '300',
+     *     'application/zip' => '300',
      * ]
      */
-    'http_expires' => [
-        'application/zip' => '+1 hour',
-        'text/json' => '+1 hour',
+    'http_cache' => [
+        'application/json' => 300,
+        'application/zip' => 300,
     ],
+
 ];

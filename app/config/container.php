@@ -4,8 +4,6 @@ use App\Factories;
 use App\Middlewares;
 use App\SortMethods;
 use App\ViewFunctions;
-use Middlewares as HttpMiddlewares;
-use Psr\Container\ContainerInterface;
 
 return [
     /** Path definitions */
@@ -19,13 +17,15 @@ return [
     'views_path' => DI\string('{app_path}/views'),
 
     /** Array of application files (to be hidden) */
-    'app_files' => ['app', 'index.php', '.hidden'],
+    'app_files' => ['app', 'index.php', '.env', '.env.example', '.hidden'],
 
     /** Array of application middlewares */
-    'middlewares' => function (ContainerInterface $container): array {
+    'middlewares' => function (): array {
         return [
             Middlewares\WhoopsMiddleware::class,
-            new HttpMiddlewares\Expires($container->get('http_expires')),
+            Middlewares\PruneCacheMiddleware::class,
+            Middlewares\CacheControlMiddleware::class,
+            Middlewares\RegisterGlobalsMiddleware::class,
         ];
     },
 
@@ -47,6 +47,7 @@ return [
         ViewFunctions\FileUrl::class,
         ViewFunctions\Icon::class,
         ViewFunctions\Markdown::class,
+        ViewFunctions\ModifiedTime::class,
         ViewFunctions\ParentUrl::class,
         ViewFunctions\SizeForHumans::class,
         ViewFunctions\Translate::class,
@@ -57,7 +58,7 @@ return [
     /** Container definitions */
     App\HiddenFiles::class => DI\factory([App\HiddenFiles::class, 'fromConfig']),
     Symfony\Component\Finder\Finder::class => DI\factory(Factories\FinderFactory::class),
-    Symfony\Contracts\Cache\CacheInterface::class => DI\Factory(Factories\CacheFactory::class),
+    Symfony\Contracts\Cache\CacheInterface::class => DI\factory(Factories\CacheFactory::class),
     Symfony\Contracts\Translation\TranslatorInterface::class => DI\factory(Factories\TranslationFactory::class),
     Slim\Views\Twig::class => DI\factory(Factories\TwigFactory::class),
     Whoops\RunInterface::class => DI\create(Whoops\Run::class),

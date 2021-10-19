@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\HiddenFiles;
+use BadMethodCallException;
 use Tightenco\Collect\Support\Collection;
 
 /** @covers \App\HiddenFiles */
@@ -25,6 +26,14 @@ class HiddenFilesTest extends TestCase
         $this->assertEquals($expected, $hiddenFiles->values()->toArray());
     }
 
+    /** @test */
+    public function it_can_not_be_instantiated_via_the_static_make_method(): void
+    {
+        $this->expectException(BadMethodCallException::class);
+
+        HiddenFiles::make([]);
+    }
+
     public function hiddenFilesProvider(): array
     {
         return [
@@ -41,11 +50,13 @@ class HiddenFilesTest extends TestCase
                 [], $this->filePath('.hidden'), false, ['alpha', 'bravo'],
             ],
             'App files' => [
-                [], 'NOT_A_REAL_FILE', true, ['app', 'index.php', '.hidden'],
+                [], 'NOT_A_REAL_FILE', true, [
+                    'app', 'index.php', '.env', '.env.example', '.hidden',
+                ],
             ],
             'All' => [
                 ['foo', 'alpha'], $this->filePath('.hidden'), true, [
-                    'foo', 'alpha', 'bravo', 'app', 'index.php', '.hidden',
+                    'foo', 'alpha', 'bravo', 'app', 'index.php', '.env', '.env.example', '.hidden',
                 ],
             ],
         ];

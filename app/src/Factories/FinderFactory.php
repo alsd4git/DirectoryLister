@@ -8,6 +8,7 @@ use App\HiddenFiles;
 use Closure;
 use DI\Container;
 use PHLAK\Splat\Glob;
+use PHLAK\Splat\Pattern;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -19,7 +20,7 @@ class FinderFactory
     /** @var HiddenFiles Collection of hidden files */
     protected $hiddenFiles;
 
-    /** @var Glob|null Hidden files pattern cache */
+    /** @var Pattern|null Hidden files pattern cache */
     protected $pattern;
 
     /** @var Config The application configuration */
@@ -41,6 +42,7 @@ class FinderFactory
     {
         $finder = Finder::create()->followLinks();
         $finder->ignoreVCS($this->config->get('hide_vcs_files'));
+        $finder->ignoreDotFiles($this->config->get('hide_dot_files'));
 
         if ($this->hiddenFiles->isNotEmpty()) {
             $finder->filter(function (SplFileInfo $file): bool {
@@ -69,12 +71,12 @@ class FinderFactory
     /** Determine if a file should be hidden. */
     protected function isHidden(SplFileInfo $file): bool
     {
-        if (! isset($this->pattern)) {
-            $this->pattern = Glob::pattern(sprintf('%s{%s}', Glob::escape(
+        if (! $this->pattern instanceof Pattern) {
+            $this->pattern = Pattern::make(sprintf('%s{%s}', Pattern::escape(
                 $this->config->get('base_path') . DIRECTORY_SEPARATOR
             ), $this->hiddenFiles->implode(',')));
         }
 
-        return $this->pattern->matchStart($file->getRealPath());
+        return Glob::matchStart($this->pattern, (string) $file->getRealPath());
     }
 }
