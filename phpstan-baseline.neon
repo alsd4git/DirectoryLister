@@ -86,12 +86,27 @@ parameters:
 			path: app/src/ViewFunctions/Breadcrumbs.php
 
 		-
-			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects resource, resource\\|false given\\.$#"
+			message: "#^Dead catch \\- RuntimeException is never thrown in the try block\\.$#"
+			count: 1
+			path: app/src/ViewFunctions/ModifiedTime.php
+
+		-
+			message: "#^Dead catch \\- RuntimeException is never thrown in the try block\\.$#"
+			count: 1
+			path: app/src/ViewFunctions/SizeForHumans.php
+
+		-
+			message: "#^Method App\\\\ViewFunctions\\\\SizeForHumans\\:\\:__invoke\\(\\) throws checked exception DivisionByZeroError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: app/src/ViewFunctions/SizeForHumans.php
+
+		-
+			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects finfo, finfo\\|false given\\.$#"
 			count: 1
 			path: tests/Controllers/ZipControllerTest.php
 
 		-
-			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects resource, resource\\|false given\\.$#"
+			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects finfo, finfo\\|false given\\.$#"
 			count: 1
 			path: tests/Exceptions/ErrorHandlerTest.php
 
